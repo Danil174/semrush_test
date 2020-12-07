@@ -1,0 +1,42 @@
+main {
+  display: flex;
+  width: 760px;
+  margin: 15px auto 0;
+  justify-content: space-around;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  width: 410px;
+  margin-top: 30px;
+  padding: 15px 0;
+  border-radius: 5px;
+
+  background-color: #ebebeb;
+}
+
+.info_item {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.info_item:nth-child(-n + 2) {
+  margin-bottom: 40px;
+}
+
+.info_item_title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.info_item_value {
+  font-size: 24px;
+  font-weight: bold;
+}
