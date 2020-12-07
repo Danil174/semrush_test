@@ -1,4 +1,5 @@
 import './InputGoup.css';
+import React from 'react';
 
 const InputGoup = (props) => {
   const {name, isRequired, type, labelText, data} = props;
@@ -8,6 +9,6 @@ const InputGoup = (props) => {
       <input type={type} id={name} {...data} required={isRequired} />
     </label>
   );
-}
+};
 
-export default InputGoup;
+export default React.memo(InputGoup);

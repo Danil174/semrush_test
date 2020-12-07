@@ -1,9 +1,9 @@
-import {useState, useCallback} from 'react';
+import {useState} from 'react';
 
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
 
-  const onChange = useCallback(evt => setValue(evt.target.value), []);
+  const onChange = evt => setValue(evt.target.value);
 
   const clear = () => setValue('');
 

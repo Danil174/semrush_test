@@ -1,5 +1,8 @@
+import {useCallback} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
+import React from 'react';
+
 import './Form.css';
 
 const Form = () => {
@@ -8,17 +11,17 @@ const Form = () => {
   const period = useInput(0);
   const rate = useInput(0);
 
-  const handleSaveClick = (evt) => {
+  const handleSaveClick = useCallback((evt) =>{
     evt.preventDefault();
-    console.log(cost.bind.value, initialPayment.bind.value, initialPayment.period.value, initialPayment.rate.value);
-  };
+    console.log(cost.bind.value, initialPayment.bind.value, period.bind.value, rate.bind.value);
+  }, [cost, initialPayment, period, rate])
 
-  const handleClearClick = () => {
+  const handleClearClick = useCallback(() => {
     cost.clear();
     initialPayment.clear();
     period.clear();
     rate.clear();
-  }
+  }, [cost, initialPayment, period, rate])
 
   return (
     <form
