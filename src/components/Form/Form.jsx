@@ -1,27 +1,41 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
-import React from 'react';
+import {useAppContext} from '../../AppContext';
 
 import './Form.css';
 
 const Form = () => {
-  const cost = useInput(0);
-  const initialPayment = useInput(0);
-  const period = useInput(0);
-  const rate = useInput(0);
+  const {
+    price,
+    setPrice,
+    calculateOffer,
+    initialPayment, setInitPm,
+    period, setPeriod,
+    rate, setRate,
+  } = useAppContext();
+
+  const apartmentPrice = useInput(price, setPrice);
+  const initialPaymentInput = useInput(initialPayment, setInitPm);
+  const periodInput = useInput(period, setPeriod);
+  const rateInput = useInput(rate, setRate);
 
   const handleSaveClick = useCallback((evt) =>{
     evt.preventDefault();
-    console.log(cost.bind.value, initialPayment.bind.value, period.bind.value, rate.bind.value);
-  }, [cost, initialPayment, period, rate])
+    console.log(apartmentPrice.bind.value, initialPaymentInput.bind.value, periodInput.bind.value, rateInput.bind.value);
+  }, [apartmentPrice, initialPaymentInput, periodInput, rateInput])
 
   const handleClearClick = useCallback(() => {
-    cost.clear();
-    initialPayment.clear();
-    period.clear();
-    rate.clear();
-  }, [cost, initialPayment, period, rate])
+    apartmentPrice.clear();
+    initialPaymentInput.clear();
+    periodInput.clear();
+    rateInput.clear();
+  }, [apartmentPrice, initialPaymentInput, periodInput, rateInput])
+
+  useEffect(() => {
+    calculateOffer();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apartmentPrice.bind.value, initialPaymentInput.bind.value, periodInput.bind.value, rateInput.bind.value]);
 
   return (
     <form
@@ -29,32 +43,32 @@ const Form = () => {
     >
       <div>
         <InputGroup
-          name={'cost'}
+          name={'apartmentPriceInput'}
           isRequired={true}
           type={'number'}
           labelText={'Стоимость недвижимости'}
-          data={cost.bind}
+          data={apartmentPrice.bind}
         />
         <InputGroup
           name={'initialPayment'}
           isRequired={true}
           type={'number'}
           labelText={'Первоночальный взнос'}
-          data={initialPayment.bind}
+          data={initialPaymentInput.bind}
         />
         <InputGroup
           name={'period'}
           isRequired={true}
           type={'number'}
           labelText={'Срок кредита'}
-          data={period.bind}
+          data={periodInput.bind}
         />
         <InputGroup
           name={'rate'}
           isRequired={true}
           type={'number'}
           labelText={'Процентная ставка'}
-          data={rate.bind}
+          data={rateInput.bind}
         />
       </div>
       <button type="submit">Save</button>

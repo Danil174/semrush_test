@@ -1,9 +1,12 @@
 import {useState} from 'react';
 
-const useInput = (initialValue) => {
+const useInput = (initialValue, action) => {
   const [value, setValue] = useState(initialValue);
 
-  const onChange = evt => setValue(evt.target.value);
+  const onChange = (evt) => {
+    action(+evt.target.value);
+    setValue(+evt.target.value);
+  };
 
   const clear = () => setValue('');
 

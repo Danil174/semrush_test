@@ -1,7 +1,10 @@
 import Form from '../Form/Form';
+import {useAppContext} from '../../AppContext';
+
 import './App.css';
 
 function App() {
+  const {monthlyPayment, income, overpayment, loanPrincipal} = useAppContext();
   return (
     <main>
       <div className="column">
@@ -11,19 +14,19 @@ function App() {
         <section className='info'>
           <p className='info_item'>
             <span className='info_item_title'>Ежемесячный платеж</span>
-            <span className='info_item_value'>222 000 р</span>
+            <span className='info_item_value'>{monthlyPayment} р</span>
           </p>
           <p className='info_item'>
             <span className='info_item_title'>Необходимый доход</span>
-            <span className='info_item_value'>222 000 р</span>
+            <span className='info_item_value'>{income} р</span>
           </p>
           <p className='info_item'>
             <span className='info_item_title'>Переплата</span>
-            <span className='info_item_value'>222 000 р</span>
+            <span className='info_item_value'>{overpayment} р</span>
           </p>
           <p className='info_item'>
             <span className='info_item_title'>Теле кредита</span>
-            <span className='info_item_value'>222 000 р</span>
+            <span className='info_item_value'>{loanPrincipal} р</span>
           </p>
         </section>
       </div>
