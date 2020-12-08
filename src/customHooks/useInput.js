@@ -8,7 +8,10 @@ const useInput = (initialValue, action) => {
     setValue(+evt.target.value);
   };
 
-  const clear = () => setValue('');
+  const clear = () => {
+    action(initialValue);
+    setValue(initialValue);
+  };
 
   return {
     bind: {

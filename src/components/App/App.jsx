@@ -4,7 +4,7 @@ import {useAppContext} from '../../AppContext';
 import './App.css';
 
 function App() {
-  const {monthlyPayment, income, overpayment, loanPrincipal} = useAppContext();
+  const {monthlyPayment, income, overpayment, loanBody} = useAppContext();
   return (
     <main>
       <div className="column">
@@ -25,8 +25,8 @@ function App() {
             <span className='info_item_value'>{overpayment} р</span>
           </p>
           <p className='info_item'>
-            <span className='info_item_title'>Теле кредита</span>
-            <span className='info_item_value'>{loanPrincipal} р</span>
+            <span className='info_item_title'>Тело кредита</span>
+            <span className='info_item_value'>{loanBody} р</span>
           </p>
         </section>
       </div>

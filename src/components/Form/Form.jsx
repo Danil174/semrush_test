@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
 import {useAppContext} from '../../AppContext';
@@ -7,18 +7,17 @@ import './Form.css';
 
 const Form = () => {
   const {
-    price,
     setPrice,
     calculateOffer,
-    initialPayment, setInitPm,
-    period, setPeriod,
-    rate, setRate,
+    setInitPm,
+    setPeriod,
+    setRate,
   } = useAppContext();
 
-  const apartmentPrice = useInput(price, setPrice);
-  const initialPaymentInput = useInput(initialPayment, setInitPm);
-  const periodInput = useInput(period, setPeriod);
-  const rateInput = useInput(rate, setRate);
+  const apartmentPrice = useInput(0, setPrice);
+  const initialPaymentInput = useInput(0, setInitPm);
+  const periodInput = useInput(0, setPeriod);
+  const rateInput = useInput(0, setRate);
 
   const handleSaveClick = useCallback((evt) =>{
     evt.preventDefault();
@@ -53,7 +52,7 @@ const Form = () => {
           name={'initialPayment'}
           isRequired={true}
           type={'number'}
-          labelText={'Первоночальный взнос'}
+          labelText={'Первоначальный взнос'}
           data={initialPaymentInput.bind}
         />
         <InputGroup
@@ -82,4 +81,4 @@ const Form = () => {
   );
 }
 
-export default Form;
+export default React.memo(Form);
