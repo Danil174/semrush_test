@@ -3,7 +3,7 @@ import {spaceInNum} from '../../utils';
 import './InputGoup.css';
 
 const InputGoup = (props) => {
-  const {name, isRequired, type, labelText, data} = props;
+  const {name, isRequired, type, labelText, data, ico} = props;
   const [focus, setFocus] = useState(false);
 
   const prettyValue = spaceInNum(data.value);
@@ -14,6 +14,7 @@ const InputGoup = (props) => {
     <label className={inputGroupClassName}>
       <span className="label">{labelText}</span>
       <span className='placeholder'>{prettyValue}</span>
+      <span className="ico">{ico}</span>
       <input
         placeholder={'Введите ваш логин'}
         type={type}

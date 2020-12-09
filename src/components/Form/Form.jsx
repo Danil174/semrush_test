@@ -47,6 +47,7 @@ const Form = () => {
           type={'number'}
           labelText={'Стоимость недвижимости'}
           data={apartmentPrice.bind}
+          ico={'₽'}
         />
         <InputGroup
           name={'initialPayment'}
@@ -54,6 +55,7 @@ const Form = () => {
           type={'number'}
           labelText={'Первоначальный взнос'}
           data={initialPaymentInput.bind}
+          ico={'₽'}
         />
         <InputGroup
           name={'period'}
@@ -61,6 +63,7 @@ const Form = () => {
           type={'number'}
           labelText={'Срок кредита'}
           data={periodInput.bind}
+          ico={'лет'}
         />
         <InputGroup
           name={'rate'}
@@ -68,6 +71,7 @@ const Form = () => {
           type={'number'}
           labelText={'Процентная ставка'}
           data={rateInput.bind}
+          ico={'%'}
         />
       </div>
       <button type="submit">Save</button>
