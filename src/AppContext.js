@@ -1,8 +1,9 @@
 import React, { useContext, useReducer } from 'react';
-import {calculateMortgage} from './utils';
-import {Actions} from './const';
+import {calculateMortgage, setInitState} from './utils';
+import {Actions, DEFAULT_STATE} from './const';
 
 const AppContext = React.createContext();
+const storage = window.localStorage;
 
 export const useAppContext = () => {
   return useContext(AppContext);
@@ -18,21 +19,21 @@ const reducer = (state, action) => {
       ...state,
       ...calculateMortgage(state.price, state.initialPayment, state.rate, state.period)
     };
+    case Actions.SAVE_DATA:
+      storage.clear();
+      for (let key in state) {
+        storage.setItem(key,state[key]);
+      }
+      return state;
+    case Actions.CLEAR_DATA:
+        storage.clear();
+      return state;
     default: return state;
   }
 }
 
 const AppProvider = ({ children }) => {
-  const initialState = {
-    price: 0,
-    initialPayment: 0,
-    period: 0,
-    rate: 0,
-    loanBody: 0,
-    monthlyPayment: 0,
-    income: 0,
-    overpayment: 0,
-  }
+  const initialState = setInitState(DEFAULT_STATE, storage);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -60,6 +61,14 @@ const AppProvider = ({ children }) => {
     type: Actions.CALCULATE_OFFER,
   });
 
+  const saveData = () =>  dispatch({
+    type: Actions.SAVE_DATA,
+  });
+
+  const clearData = () =>  dispatch({
+    type: Actions.CLEAR_DATA,
+  });
+
   const { price, initialPayment, period, rate, monthlyPayment, income, overpayment, loanBody } = state;
 
   return(
@@ -69,6 +78,7 @@ const AppProvider = ({ children }) => {
       period, setPeriod,
       rate, setRate,
       calculateOffer, monthlyPayment, income, overpayment, loanBody,
+      saveData, clearData
     }}>
       { children }
     </AppContext.Provider>

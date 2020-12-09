@@ -9,8 +9,8 @@ const useInput = (initialValue, action) => {
   };
 
   const clear = () => {
-    action(initialValue);
-    setValue(initialValue);
+    action(0);
+    setValue(0);
   };
 
   return {

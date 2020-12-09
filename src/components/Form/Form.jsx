@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
 import {useAppContext} from '../../AppContext';
@@ -7,29 +7,36 @@ import './Form.css';
 
 const Form = () => {
   const {
+    price,
+    initialPayment,
+    period,
+    rate,
     setPrice,
     calculateOffer,
     setInitPm,
     setPeriod,
     setRate,
+    saveData,
+    clearData,
   } = useAppContext();
 
-  const apartmentPrice = useInput(0, setPrice);
-  const initialPaymentInput = useInput(0, setInitPm);
-  const periodInput = useInput(0, setPeriod);
-  const rateInput = useInput(0, setRate);
+  const apartmentPrice = useInput(price, setPrice);
+  const initialPaymentInput = useInput(initialPayment, setInitPm);
+  const periodInput = useInput(period, setPeriod);
+  const rateInput = useInput(rate, setRate);
 
-  const handleSaveClick = useCallback((evt) =>{
+  const handleSaveClick = (evt) =>{
     evt.preventDefault();
-    console.log(apartmentPrice.bind.value, initialPaymentInput.bind.value, periodInput.bind.value, rateInput.bind.value);
-  }, [apartmentPrice, initialPaymentInput, periodInput, rateInput])
+    saveData();
+  };
 
-  const handleClearClick = useCallback(() => {
+  const handleClearClick = () => {
     apartmentPrice.clear();
     initialPaymentInput.clear();
     periodInput.clear();
     rateInput.clear();
-  }, [apartmentPrice, initialPaymentInput, periodInput, rateInput])
+    clearData();
+  };
 
   useEffect(() => {
     calculateOffer();

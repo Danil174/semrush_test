@@ -29,3 +29,14 @@ export const calculateMortgage = (price, initialPayment, interestRate, years) =>
 }
 
 export const spaceInNum = num => num.toString().replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, '$1 ');
+
+export const setInitState = (state, store) => {
+  if (store.length === 0) {
+    return state;
+  }
+  const data = {};
+  for(let key in state) {
+    data[key] = +store.getItem(key);
+  }
+  return data;
+}
