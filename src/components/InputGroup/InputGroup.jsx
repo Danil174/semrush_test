@@ -1,12 +1,28 @@
+import React, {useState} from 'react';
+import {spaceInNum} from '../../utils';
 import './InputGoup.css';
-import React from 'react';
 
 const InputGoup = (props) => {
   const {name, isRequired, type, labelText, data} = props;
+  const [focus, setFocus] = useState(false);
+
+  const prettyValue = spaceInNum(data.value);
+
+  let inputGroupClassName = focus ? `input-group focused` : `input-group`;
+
   return (
-    <label className="input-group">
+    <label className={inputGroupClassName}>
       <span className="label">{labelText}</span>
-      <input type={type} id={name} {...data} required={isRequired} />
+      <span className='placeholder'>{prettyValue}</span>
+      <input
+        placeholder={'Введите ваш логин'}
+        type={type}
+        id={name}
+        {...data}
+        required={isRequired}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+      />
     </label>
   );
 };

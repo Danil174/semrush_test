@@ -12,16 +12,20 @@ const calcOverpayment = (monthlyPayment, years, price, initialPayment) =>{
   return monthlyPayment * years * 12 - price + initialPayment;
 };
 
+const testNaN = num => isNaN(num) ? 0 : num;
+
 export const calculateMortgage = (price, initialPayment, interestRate, years) => {
-  const loanBody = calcLoanBody(price, initialPayment)
+  const loanBody = calcLoanBody(price, initialPayment);
   const monthlyPayment = calcMonthlyPayment(loanBody, interestRate, years);
   const income = calcIncome(monthlyPayment);
   const overpayment = calcOverpayment(monthlyPayment, years, price, initialPayment);
 
   return {
     loanBody,
-    monthlyPayment,
-    income,
-    overpayment,
+    monthlyPayment: testNaN(monthlyPayment),
+    income: testNaN(income),
+    overpayment: testNaN(overpayment),
   }
 }
+
+export const spaceInNum = num => num.toString().replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, '$1 ');
