@@ -83,12 +83,14 @@ const Form = () => {
           ico={'%'}
         />
       </div>
-      <ButtonSubmit className="button" text={'Save'}/>
-      <Button
-        className="button"
-        text={'Clear'}
-        onClick={handleClearClick}
-      />
+      <fieldset className="controls">
+        <ButtonSubmit className="button" text={'Save'}/>
+        <Button
+          className="button"
+          text={'Clear'}
+          onClick={handleClearClick}
+        />
+      </fieldset>
     </form>
   );
 }

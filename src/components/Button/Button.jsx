@@ -1,3 +1,5 @@
+import "./Button.css";
+
 const Button = ({className, text, ...restProps}) => {
   return (
     <button type="button" className={className} {...restProps}>

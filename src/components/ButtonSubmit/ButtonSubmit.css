@@ -1,0 +1,23 @@
+.button-submit {
+  border: none;
+  background-color: #50ae34;
+  color: #fff;
+
+  background-position: center;
+  transition: background 0.8s;
+}
+
+
+.button-submit:hover {
+  background: #68c94b radial-gradient(circle, transparent 1%, #68c94b 1%) center/15000%;
+}
+
+.button-submit:active {
+  background-color: #87d470;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.button-submit:focus {
+  outline: #31ce5b auto 1px;
+}
