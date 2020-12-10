@@ -19,3 +19,5 @@ export const DEFAULT_STATE = {
   income: 0,
   overpayment: 0,
 };
+
+export const PROCENTS = [10, 15, 20, 25, 30];

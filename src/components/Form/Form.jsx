@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
+import ProcentList from '../ProcentList/ProcentList';
 import Button from '../Button/Button';
 import ButtonSubmit from '../ButtonSubmit/ButtonSubmit';
 import {useAppContext} from '../../AppContext';
+
+import {PROCENTS} from '../../const';
 
 import './Form.css';
 
@@ -66,6 +69,9 @@ const Form = () => {
           data={initialPaymentInput.bind}
           ico={'₽'}
         />
+        <fieldset className="controls radio-list">
+          <ProcentList list={PROCENTS} />
+        </fieldset>
         <InputGroup
           name={'period'}
           isRequired={true}

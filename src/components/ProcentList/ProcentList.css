@@ -1,0 +1,19 @@
+.procent_input {
+  display: none;
+}
+
+.procent_label {
+  width: 40px;
+  height: 25px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input.procent_input:checked + .procent_label{
+  background-color: #2a94e1;
+  color: #fff;
+}
