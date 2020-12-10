@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
+import Button from '../Button/Button';
+import ButtonSubmit from '../ButtonSubmit/ButtonSubmit';
 import {useAppContext} from '../../AppContext';
 
 import './Form.css';
@@ -81,13 +83,12 @@ const Form = () => {
           ico={'%'}
         />
       </div>
-      <button type="submit">Save</button>
-      <button
-        type="button"
+      <ButtonSubmit className="button" text={'Save'}/>
+      <Button
+        className="button"
+        text={'Clear'}
         onClick={handleClearClick}
-      >
-        Clear
-      </button>
+      />
     </form>
   );
 }
