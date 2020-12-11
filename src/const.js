@@ -7,6 +7,7 @@ export const Actions = {
   SAVE_DATA: 'SAVE_DATA',
   CLEAR_DATA: 'CLEAR_DATA',
   LOAD_DATA: 'LOAD_DATA',
+  SET_RATIO: 'SET_RATIO',
 };
 
 export const DEFAULT_STATE = {
@@ -18,6 +19,7 @@ export const DEFAULT_STATE = {
   monthlyPayment: 0,
   income: 0,
   overpayment: 0,
+  ratio: null,
 };
 
 export const PROCENTS = [10, 15, 20, 25, 30];

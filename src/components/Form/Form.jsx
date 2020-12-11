@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
-import useInput from '../../customHooks/useInput';
 import InputGroup from '../InputGroup/InputGroup';
-import ProcentList from '../ProcentList/ProcentList';
+// import ProcentList from '../ProcentList/ProcentList';
 import Button from '../Button/Button';
 import ButtonSubmit from '../ButtonSubmit/ButtonSubmit';
 import {useAppContext} from '../../AppContext';
 
-import {PROCENTS} from '../../const';
+// import {PROCENTS} from '../../const';
 
 import './Form.css';
 
@@ -23,12 +22,8 @@ const Form = () => {
     setRate,
     saveData,
     clearData,
+    // ratio,
   } = useAppContext();
-
-  const apartmentPrice = useInput(price, setPrice);
-  const initialPaymentInput = useInput(initialPayment, setInitPm);
-  const periodInput = useInput(period, setPeriod);
-  const rateInput = useInput(rate, setRate);
 
   const handleSaveClick = (evt) =>{
     evt.preventDefault();
@@ -36,17 +31,13 @@ const Form = () => {
   };
 
   const handleClearClick = () => {
-    apartmentPrice.clear();
-    initialPaymentInput.clear();
-    periodInput.clear();
-    rateInput.clear();
     clearData();
   };
 
   useEffect(() => {
     calculateOffer();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apartmentPrice.bind.value, initialPaymentInput.bind.value, periodInput.bind.value, rateInput.bind.value]);
+  }, [price, initialPayment, period, rate,]);
 
   return (
     <form
@@ -54,11 +45,12 @@ const Form = () => {
     >
       <div>
         <InputGroup
-          name={'apartmentPriceInput'}
+          name={'price'}
           isRequired={true}
           type={'number'}
           labelText={'Стоимость недвижимости'}
-          data={apartmentPrice.bind}
+          value={price}
+          onChange={setPrice}
           ico={'₽'}
         />
         <InputGroup
@@ -66,18 +58,23 @@ const Form = () => {
           isRequired={true}
           type={'number'}
           labelText={'Первоначальный взнос'}
-          data={initialPaymentInput.bind}
+          value={initialPayment}
+          onChange={setInitPm}
           ico={'₽'}
         />
         <fieldset className="controls radio-list">
-          <ProcentList list={PROCENTS} />
+          {/* <ProcentList
+            list={PROCENTS}
+            onChange={initialPaymentInput.bind.onChange}
+          /> */}
         </fieldset>
         <InputGroup
           name={'period'}
           isRequired={true}
           type={'number'}
           labelText={'Срок кредита'}
-          data={periodInput.bind}
+          value={period}
+          onChange={setPeriod}
           ico={'лет'}
         />
         <InputGroup
@@ -85,7 +82,8 @@ const Form = () => {
           isRequired={true}
           type={'number'}
           labelText={'Процентная ставка'}
-          data={rateInput.bind}
+          value={rate}
+          onChange={setRate}
           ico={'%'}
         />
       </div>

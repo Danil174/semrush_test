@@ -3,10 +3,10 @@ import {spaceInNum} from '../../utils';
 import './InputGoup.css';
 
 const InputGoup = (props) => {
-  const {name, isRequired, type, labelText, data, ico} = props;
+  const {name, isRequired, type, labelText, ico, value, onChange} = props;
   const [focus, setFocus] = useState(false);
 
-  const prettyValue = spaceInNum(data.value);
+  const prettyValue = spaceInNum(value);
 
   let inputGroupClassName = focus ? `input-group focused` : `input-group`;
 
@@ -16,10 +16,10 @@ const InputGoup = (props) => {
       <span className='placeholder'>{prettyValue}</span>
       <span className="ico">{ico}</span>
       <input
-        placeholder={'Введите ваш логин'}
         type={type}
         id={name}
-        {...data}
+        value={value}
+        onChange={(evt)=> onChange(+evt.target.value)}
         required={isRequired}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}

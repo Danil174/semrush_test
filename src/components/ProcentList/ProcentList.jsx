@@ -1,7 +1,9 @@
 import React from 'react';
+import {useAppContext} from '../../AppContext';
 import './ProcentList.css';
 
-const ProcentList = ({list}) => {
+const ProcentList = ({list, onChange}) => {
+  const {setRatio, setInitPm, price} = useAppContext();
   return (
     list.map((it) => (
       <React.Fragment key={it}>
@@ -12,7 +14,8 @@ const ProcentList = ({list}) => {
           id={`id_${it}`}
           value={it}
           onChange={(evt)=>{
-            console.log(evt.target.value);
+            setRatio(+evt.target.value);
+            setInitPm((price / 100) * (+evt.target.value));
           }}
         />
        <label className="procent_label" htmlFor={`id_${it}`}>{it}%</label>

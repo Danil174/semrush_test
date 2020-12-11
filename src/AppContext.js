@@ -11,10 +11,17 @@ export const useAppContext = () => {
 
 const reducer = (state, action) => {
   switch(action.type) {
-    case Actions.SET_PRICE: return {...state, price: action.payload};
-    case Actions.SET_INITIAL_PAYMENT: return {...state, initialPayment: action.payload};
+    case Actions.SET_PRICE: return {
+      ...state,
+      price: action.payload
+    };
+    case Actions.SET_INITIAL_PAYMENT: return {
+      ...state,
+      initialPayment: action.payload
+    };
     case Actions.SET_PERIOD: return {...state, period: action.payload};
     case Actions.SET_RATE: return {...state, rate: action.payload};
+    case Actions.SET_RATIO: return {...state, ratio: action.payload};
     case Actions.CALCULATE_OFFER: return {
       ...state,
       ...calculateMortgage(state.price, state.initialPayment, state.rate, state.period)
@@ -57,6 +64,11 @@ const AppProvider = ({ children }) => {
     payload: amount
   });
 
+  const setRatio = (amount) => dispatch({
+    type: Actions.SET_RATIO,
+    payload: amount
+  });
+
   const calculateOffer = () =>  dispatch({
     type: Actions.CALCULATE_OFFER,
   });
@@ -69,10 +81,11 @@ const AppProvider = ({ children }) => {
     type: Actions.CLEAR_DATA,
   });
 
-  const { price, initialPayment, period, rate, monthlyPayment, income, overpayment, loanBody } = state;
+  const { price, initialPayment, period, rate, monthlyPayment, income, overpayment, loanBody, ratio} = state;
 
   return(
     <AppContext.Provider value={{
+      setRatio, ratio,
       price, setPrice,
       initialPayment, setInitPm,
       period, setPeriod,
