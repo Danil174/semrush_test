@@ -2,8 +2,8 @@ import React from 'react';
 import {useAppContext} from '../../AppContext';
 import './ProcentList.css';
 
-const ProcentList = ({list, onChange}) => {
-  const {setRatio, setInitPm, price} = useAppContext();
+const ProcentList = ({list}) => {
+  const {setRatio, ratio, price, setInitPm} = useAppContext();
   return (
     list.map((it) => (
       <React.Fragment key={it}>
@@ -15,8 +15,9 @@ const ProcentList = ({list, onChange}) => {
           value={it}
           onChange={(evt)=>{
             setRatio(+evt.target.value);
-            setInitPm((price / 100) * (+evt.target.value));
+            setInitPm(price / 100 * +evt.target.value);
           }}
+          defaultChecked={ratio === it}
         />
        <label className="procent_label" htmlFor={`id_${it}`}>{it}%</label>
       </React.Fragment>

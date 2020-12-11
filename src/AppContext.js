@@ -13,11 +13,13 @@ const reducer = (state, action) => {
   switch(action.type) {
     case Actions.SET_PRICE: return {
       ...state,
-      price: action.payload
+      price: action.payload,
+      initialPayment: state.ratio ? action.payload / 100 * state.ratio : state.initialPayment,
     };
     case Actions.SET_INITIAL_PAYMENT: return {
       ...state,
-      initialPayment: action.payload
+      initialPayment: action.payload,
+      price: state.ratio ? action.payload / state.ratio * 100: state.price,
     };
     case Actions.SET_PERIOD: return {...state, period: action.payload};
     case Actions.SET_RATE: return {...state, rate: action.payload};

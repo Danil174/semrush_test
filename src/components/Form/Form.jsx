@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import InputGroup from '../InputGroup/InputGroup';
-// import ProcentList from '../ProcentList/ProcentList';
+import ProcentList from '../ProcentList/ProcentList';
 import Button from '../Button/Button';
 import ButtonSubmit from '../ButtonSubmit/ButtonSubmit';
 import {useAppContext} from '../../AppContext';
 
-// import {PROCENTS} from '../../const';
+import {PROCENTS} from '../../const';
 
 import './Form.css';
 
@@ -22,7 +22,6 @@ const Form = () => {
     setRate,
     saveData,
     clearData,
-    // ratio,
   } = useAppContext();
 
   const handleSaveClick = (evt) =>{
@@ -63,10 +62,9 @@ const Form = () => {
           ico={'₽'}
         />
         <fieldset className="controls radio-list">
-          {/* <ProcentList
+          <ProcentList
             list={PROCENTS}
-            onChange={initialPaymentInput.bind.onChange}
-          /> */}
+          />
         </fieldset>
         <InputGroup
           name={'period'}
